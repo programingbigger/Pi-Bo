@@ -1,2 +1,4 @@
 # PiBoCore配下のファイルとフォルダ（そのフォルダの配下も）無視
 PiBocore
+*.log
+LOGGING/*.log
