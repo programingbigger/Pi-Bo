@@ -2,4 +2,4 @@
 PiBocore
 *.log
 LOGGING/*.log
-save_caputure/.png
+save_caputure/*.png
