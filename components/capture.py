@@ -20,6 +20,7 @@ from PIL import Image
 from PIL import ImageDraw
 #from PIL import ImageFont
 from logging import getLogger
+import sys
 
 # logger
 logger = getLogger(__name__)
@@ -65,57 +66,57 @@ def CaptureFace():
 	# face detected flag
 	face_detected_flag = False
 
-	try:
-		while True:
-			# キャプチャー
-			image = picam2.capture_array()
-			faces = face_detector(image, 0)
 
-			if len(faces) == 1:
-				# 画像をpillowに変換
-				pil_image = Image.fromarray(image)
-				draw = ImageDraw.Draw(pil_image)
+	# キャプチャー
+	image = picam2.capture_array()
+	faces = face_detector(image, 0)
 
-				# bbox情報を抽出し画像に加える
-				for i, face in enumerate(faces):
-					"""
-					faces[0]で、 [(left, top), (right, bottom)]の情報を取得できる
-					rectangleは、「四角（矩形）」という意味
-					"""
+	if len(faces) == 1:
+		# 画像をpillowに変換
+		pil_image = Image.fromarray(image)
+		draw = ImageDraw.Draw(pil_image)
 
-					# 画像に矩形の描画
-					draw.rectangle(
-									((face.left(), face.top()), (face.right(), face.bottom()))
-									, outline=(0, 255, 0) # Green box
-									, width=4
-								)
-					# テキスト挿入
-					text_x = face.left()
-					text_y = face.top()
-					draw.text((text_x, text_y), text="face", textColor=(0, 255, 0))
+		# bbox情報を抽出し画像に加える
+		for i, face in enumerate(faces):
+			"""
+			faces[0]で、 [(left, top), (right, bottom)]の情報を取得できる
+			rectangleは、「四角（矩形）」という意味
+			"""
 
-				# 矩形が描かれた情報を保存
-				pil_image.save(f"{cap_file_name}_with_boxes.png")
-				logger.info(f"Saved image with boxes: {cap_file_name}_with_boxes.png")
-				logger.info("collect capture")
-				
-				face_detected_flag = True
-				
-			else:
-				logger.info("not capture")
-				face_detected_flag = False
-				pass
+			# 画像に矩形の描画
+			draw.rectangle(
+							((face.left(), face.top()), (face.right(), face.bottom()))
+							, outline=(0, 255, 0) # Green box
+							, width=4
+						)
+			# テキスト挿入
+			text_x = face.left()
+			text_y = face.top()
+			draw.text((text_x, text_y), text="face", textColor=(0, 255, 0))
 
-			time.sleep(0.5)
-			logger.info("continue capture")
-	except KeyboardInterrupt:
-		# Ctrl+C でループ終了
-		logger.error("A key was interrupted during execution. ex: ctrl + c")
-		logger.info("stop picamera")
-		pass
+		# 矩形が描かれた情報を保存
+		pil_image.save(f"{cap_file_name}_with_boxes.png")
+		logger.info(f"Saved image with boxes: {cap_file_name}_with_boxes.png")
+		logger.info("collect capture")
+		
+		face_detected_flag = True
 
+	else:
+		logger.info("not capture")
+		face_detected_flag = False
+
+	time.sleep(0.5)
+	logger.info("continue capture")
+
+	return face_detected_flag
+
+
+def StopCamera():
 	# end camera
 	picam2.stop_preview()
 	picam2.stop()
-
-	return face_detected_flag
+	
+	logger.error("A key was interrupted during execution. ex: ctrl + c")
+	logger.info("stop picamera")
+	
+	sys.exit()

@@ -14,6 +14,10 @@
 	- 保存される画像を180度回転させる
 	- もう少しコードを分割する
 		- フォルダを作成するコードを別コードに移行
+	- コードの簡略化
+		- classを定義し、見やすいような形にする
+  - faces.py
+	- tryとexceptをなくした状態にし、main.pyに移行させる
 """
 from components import clean
 from components import faces
@@ -41,6 +45,11 @@ main_logger.info("start main.py")
 	# ~ faces.trouble()
 
 # capture
-capture.CaptureFace()
+while True:
+	try:
+		capture.CaptureFace()
+	except KeyboardInterrupt:
+		# Ctrl+C でループ終了
+		capture.StopCamera()
 
 main_logger.info("end main.py")
