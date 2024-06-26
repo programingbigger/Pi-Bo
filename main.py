@@ -1,9 +1,9 @@
 """
 - todo
   - main.py
-	- faces.pyとcapture.pyを同時に処理させる並列処理の実装
-	- 一応、ThreadPoolExcuterで実装できたけど、いかがなものか・・・
-	- add clean.py
+	- clean.pyの追加
+	- 顔を検出し笑顔が出るが、以前の真顔の処理を同時に処理している
+		- これを同時に処理させないようにする。
 
   - MY_LOGGING.py
 	- LOGGINGのログを日本時間に変更する
@@ -17,13 +17,16 @@
 		- フォルダを作成するコードを別コードに移行
 	- コードの簡略化
 		- classを定義し、見やすいような形にする
-  - faces.py
-	- tryとexceptをなくした状態にし、main.pyに移行させる
-	- 顔をランダムに出力するアーキテクチャに書き換える
+	- 顔を検出したら## 顔検出ロジックが出るように組み込む
+
+ - faces.py⇨名前displayじゃね？
+	- 顔のバリエーションをもう1つ増やし
+	- 4つの顔をランダムに出力するアーキテクチャに書き換える
+	- 顔検出ができた用に、「こんにちは」⇨「笑顔」になるロジックを入れる ## 顔検出ロジック
 
 """
 from components import clean
-from components import faces
+from components.faces import LEDMatrixDisplay
 from components import capture
 from LOGGING.MY_LOGGING import setup_log
 from concurrent.futures import ThreadPoolExecutor
@@ -44,30 +47,31 @@ main_logger.info("start main.py")
 # clean screan
 # clean.clear_screan()
 
-# ~ while True:
-	# ~ faces.magao()
-	# ~ faces.eyes_LR()
-	# ~ faces.smile()
-	# ~ faces.trouble()
+display = LEDMatrixDisplay()
 
 # 電光掲示板の実行関数
 def emojishow():
-	# ~ faces.magao()
-	# ~ faces.eyes_LR()
-	faces.smile()
-	# ~ faces.trouble()
+	display.magao()
+	# ~ display.eyes_LR()
+	# ~ display.smile()
+	# ~ display.trouble()
 
 # カメラの実行関数
 def face2marquee():
-	capture.CaptureFace()
+	FaceDetect_FLAG = capture.CaptureFace()
 
-# 
+	# 顔を検出したら、笑顔になるロジック
+	if FaceDetect_FLAG == True:
+		display.smile()
+	else:
+		pass
+
+# signal handlerの設定
 def signal_handler(signum, frame):
   print("stop")
   executor.shutdown(wait=False)
   sys.exit(0)
-  
-# set signal handler
+
 signal.signal(signal.SIGINT, signal_handler)
 
 # 並列処理の実装
@@ -76,21 +80,12 @@ with ThreadPoolExecutor(max_workers=2) as executor:
 		while True:
 			emoji = executor.submit(emojishow)
 			face = executor.submit(face2marquee)
-		 
+
 			emoji = emoji.result()
 			face = face.result()
-		 
+
 			print("do ThreadPoolExecutor")
 	except KeyboardInterrupt:
 		pass
-
-
-# ~ # capture
-# ~ while True:
-	# ~ try:
-		# ~ capture.CaptureFace()
-	# ~ except KeyboardInterrupt:
-		# ~ # Ctrl+C でループ終了
-		# ~ capture.StopCamera()
 
 main_logger.info("end main.py")
