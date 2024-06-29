@@ -2,8 +2,6 @@
 - todo
   - main.py
 	- clean.pyの追加
-	- 顔を検出し笑顔が出るが、以前の真顔の処理を同時に処理している
-		- これを同時に処理させないようにする。
 
   - MY_LOGGING.py
 	- LOGGINGのログを日本時間に変更する
@@ -23,17 +21,22 @@
 	- 顔のバリエーションをもう1つ増やし
 	- 4つの顔をランダムに出力するアーキテクチャに書き換える
 	- 顔検出ができた用に、「こんにちは」⇨「笑顔」になるロジックを入れる ## 顔検出ロジック
+ - Readme.md
+	- 生成AIに書かせる
+ - requrements.txtの追加
+	- ライブラリの追加
+	- dev環境でライブラリをインポートしてちゃんと動く用に設定する
 
 """
 from components import clean
-from components.faces import LEDMatrixDisplay
+from components.display import FACES
 from components import capture
 from LOGGING.MY_LOGGING import setup_log
 import sys
 
-# setup loggig
+# loggigの設定
 main_logger = setup_log(__name__)
-faces_logger = setup_log("components.faces")
+faces_logger = setup_log("components.display")
 capture_logger = setup_log("components.capture")
 
 '''
@@ -45,19 +48,14 @@ main_logger.info("start main.py")
 # clean screan
 # clean.clear_screan()
 
-display = LEDMatrixDisplay()
+faces = FACES()
 
 while True:
-	try:
-		# do
-		display.magao()
-		FaceDetect_FLAG = capture.CaptureFace()
-		# 顔を検出したら、笑顔になるロジック
-		if FaceDetect_FLAG == True:
-			display.smile()
-		else:
-			pass
-	except KeyboardInterrupt:
-		main_logger.info("end main.py")
-		sys.exit(0)
-	
+	# do
+	faces.magao()
+	FaceDetect_FLAG = capture.CaptureFace()
+	# 顔を検出したら、笑顔になるロジック
+	if FaceDetect_FLAG == True:
+		faces.smile()
+	else:
+		pass

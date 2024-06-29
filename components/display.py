@@ -6,7 +6,7 @@ from luma.core.interface.serial import spi, noop
 from luma.core.render import canvas
 from luma.core.virtual import viewport
 
-class LEDMatrixDisplay:
+class FACES:
     def __init__(self):
         self.logger = getLogger(__name__)
         self.CASCADED = 4
