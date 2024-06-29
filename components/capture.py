@@ -82,7 +82,7 @@ def CaptureFace():
 			faces[0]で、 [(left, top), (right, bottom)]の情報を取得できる
 			rectangleは、「四角（矩形）」という意味
 			"""
-
+ 
 			# 画像に矩形の描画
 			draw.rectangle(
 							((face.left(), face.top()), (face.right(), face.bottom()))
@@ -102,10 +102,14 @@ def CaptureFace():
 		face_detected_flag = True
 
 	else:
+		# 
+		pil_image = Image.fromarray(image)
+		pil_image.save(f"{cap_file_name}.png")
+		logger.info(f"Saved image: {cap_file_name}.png")
 		logger.info("not capture")
 		face_detected_flag = False
 
-	time.sleep(0.5)
+	time.sleep(0.1)
 	logger.info("continue capture")
 
 	return face_detected_flag

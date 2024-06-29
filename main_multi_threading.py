@@ -29,7 +29,13 @@ from components import clean
 from components.faces import LEDMatrixDisplay
 from components import capture
 from LOGGING.MY_LOGGING import setup_log
+from concurrent.futures import ThreadPoolExecutor
+import signal
 import sys
+import queue
+
+# set empty queue
+q = queue.Queue()
 
 # setup loggig
 main_logger = setup_log(__name__)
@@ -37,7 +43,7 @@ faces_logger = setup_log("components.faces")
 capture_logger = setup_log("components.capture")
 
 '''
-======================== main ========================
+main
 '''
 
 main_logger.info("start main.py")
@@ -47,17 +53,55 @@ main_logger.info("start main.py")
 
 display = LEDMatrixDisplay()
 
-while True:
+# 電光掲示板の実行関数
+def emojishow():
+	display.magao()
+
+		# ~ display.eyes_LR()
+		# ~ display.smile()
+		# ~ display.trouble()
+
+# カメラの実行関数
+def face2marquee():
+	FaceDetect_FLAG = capture.CaptureFace()
+
+	# 顔を検出したら、笑顔になるロジック
+	if FaceDetect_FLAG == True:
+		display.smile()
+	else:
+		pass
+
+# ~ # signal handlerの設定
+def signal_handler(signum, frame):
+  print("stop")
+  executor.shutdown(wait=False)
+  sys.exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
+
+
+# 並列処理の実装
+with ThreadPoolExecutor(max_workers=2) as executor:
 	try:
-		# do
-		display.magao()
-		FaceDetect_FLAG = capture.CaptureFace()
-		# 顔を検出したら、笑顔になるロジック
-		if FaceDetect_FLAG == True:
-			display.smile()
-		else:
-			pass
+		while True:
+			emoji = executor.submit(emojishow)
+			face = executor.submit(face2marquee)
+
+			emoji = emoji.result()
+			face = face.result()
+
+			print("do ThreadPoolExecutor")
 	except KeyboardInterrupt:
-		main_logger.info("end main.py")
-		sys.exit(0)
-	
+		pass
+
+main_logger.info("end main.py")
+
+# signal handlerの設定
+# ~ def signal_handler(signum, frame):
+  # ~ print("stop")
+  # ~ executor.shutdown(wait=False)
+  # ~ sys.exit(0)
+
+# ~ signal.signal(signal.SIGINT, signal_handler)
+
+
