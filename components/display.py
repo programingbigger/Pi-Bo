@@ -1,5 +1,6 @@
 import time
 import sys
+import random
 from logging import getLogger
 from luma.led_matrix.device import max7219
 from luma.core.interface.serial import spi, noop
@@ -95,3 +96,7 @@ class FACES:
             print("-"*10, "stop trouble", "-"*10)
             self.logger.error("key was interrupted during execution. ex: ctrl + c")
             sys.exit()
+
+    def random_face(self):
+        functions = [self.magao, self.eyes_LR, self.trouble]
+        random.choice(functions)()

@@ -18,7 +18,6 @@
 
  - display.py
 	- 顔のバリエーションをもう1つ増やし
-	- 4つの顔をランダムに出力するアーキテクチャに書き換える
 	- 顔検出ができた用に、「こんにちは」⇨「笑顔」になるロジックを入れる ## 顔検出ロジック
  - Readme.md
 	- 生成AIに書かせる
@@ -50,11 +49,9 @@ main_logger.info("start main.py")
 faces = FACES()
 
 while True:
-	# do
-	faces.magao()
 	FaceDetect_FLAG = capture.CaptureFace()
 	# 顔を検出したら、笑顔になるロジック
 	if FaceDetect_FLAG == True:
 		faces.smile()
 	else:
-		pass
+		faces.random_face()
