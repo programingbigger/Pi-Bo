@@ -17,6 +17,7 @@ Pi-Bo は、Pythonで開発されており、顔認識には `dlib` ライブラ
 
 ![Demo](動画またはGIF画像のURL)  ※動画またはGIF画像があれば、ここにURLを貼り付けてください。
 
+
 ## 特徴
 
 - 顔認識機能: あなたの顔を認識して、様々な表情を見せてくれます。
@@ -61,7 +62,7 @@ Pi-Bo は、Pythonで開発されており、顔認識には `dlib` ライブラ
    ```
 2. `git clone` でこのリポジトリをクローンします。
     ```bash
-    git clone https://github.com/TomoakiTANAKA/awesome-tool  ※適切なgitリポジトリURLに置き換えてください
+    git clone https://github.com/hogehoge/hogehoge  ※適切なgitリポジトリURLに置き換えてください
     ```
 3. リポジトリのディレクトリに移動します。
    ```bash
