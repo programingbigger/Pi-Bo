@@ -1,7 +1,6 @@
 # PiBoCore配下のファイルとフォルダ（そのフォルダの配下も）無視
-PiBocore
+core
 *.log
 LOGGING/*.log
 save_caputure/*.png
 demo
-main_alpha.py
