@@ -11,7 +11,7 @@ class FACES:
     def __init__(self):
         self.logger = getLogger(__name__)
         self.CASCADED = 4
-        self.ORIENTATION = -90  # -90, 0, 90, 180
+        self.ORIENTATION =  -90  # -90, 0, 90, 180
         self.WIDTH = 32
         self.HEIGHT = 16
 
@@ -20,28 +20,23 @@ class FACES:
         self.virtual_1 = viewport(device_1, width=80*16, height=16)
         self.virtual_1.set_position((0, 0))
 
-    def magao(self):
+    def magao(self): # magao + winking
         try:
-            n = 0
-            while True:
-                with canvas(self.virtual_1) as draw:
-                    time.sleep(0.5)
-                    draw.line((8,2, 8,9), fill="white")
-                    draw.line((23,2, 23,9), fill="white")
-                    draw.line((12,13, 19,13), fill="white")
-                
-                with canvas(self.virtual_1) as draw:
-                    time.sleep(2)
-                    if n == 1:
-                        break
-                    draw.line((8,6, 8,9), fill="white")
-                    draw.line((23,6, 23,9), fill="white")
-                    draw.line((12,13, 19,13), fill="white")
-                
-                with canvas(self.virtual_1) as draw:
-                    time.sleep(0.25)
-                    draw.line((12,13, 19,13), fill="white")
-                n += 1
+            with canvas(self.virtual_1) as draw:
+                draw.line((8,2, 8,9), fill="white")
+                draw.line((23,2, 23,9), fill="white")
+                draw.line((12,13, 19,13), fill="white")
+            
+            with canvas(self.virtual_1) as draw:
+                time.sleep(2)
+                draw.line((8,6, 8,9), fill="white")
+                draw.line((23,6, 23,9), fill="white")
+                draw.line((12,13, 19,13), fill="white")
+            
+            with canvas(self.virtual_1) as draw:
+                time.sleep(0.25)
+                draw.line((12,13, 19,13), fill="white")
+
             self.logger.info("correct do winking")
         except KeyboardInterrupt:
             print("-"*10, "stop winking", "-"*10)
