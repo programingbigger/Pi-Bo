@@ -4,18 +4,25 @@
 
 「Pi-Bo」は、Raspberry Pi とカメラモジュール、LED マトリックスを使って、あなたとコミュニケーションをとるインタラクティブなロボットです。  Pi-Bo はあなたの顔を認識し、笑顔を見せたり、時には困った顔を見せたり、様々な表情であなたを楽しませてくれます。
 
-## Description
+## 詳細
 
 Pi-Bo は、搭載されたカメラモジュールを使ってあなたの顔を認識します。そして、その認識結果に応じて、LED マトリックスに表示する表情を変えます。
 
 * あなたの顔を認識した場合: Pi-Bo は嬉しそうに笑顔を見せます。
-* あなたの顔を認識できなかった場合: Pi-Bo は少し困ったような顔を見せます。
+* あなたの顔を認識できなかった場合: Pi-Bo は少し困ったような表情やウインクをしたりと色々な表情を見せます。
 
 Pi-Bo は、Pythonで開発されており、顔認識には `dlib` ライブラリ、LED マトリックスの制御には `luma.led_matrix` ライブラリを使用しています。
 
-***DEMO:***
+## デモ動画
+顔を認識しない場合は、以下の動画のように、ウインク・目を左右に動かす・困った顔をするといった表情を見せます。
+実際には先の表情3つがランダムに表示されます。
 
-![Demo](動画またはGIF画像のURL)  ※動画またはGIF画像があれば、ここにURLを貼り付けてください。
+https://github.com/programingbigger/Pi-Bo/assets/125252034/b89f9d80-1ebd-4b82-908b-feb740e55ac2
+
+
+顔を検出した時は、笑顔の表情を見せます。
+
+https://github.com/programingbigger/Pi-Bo/assets/125252034/90f5909e-fb79-4857-8b8a-e0f5dd32b790
 
 ## 特徴
 
@@ -46,7 +53,7 @@ Pi-Bo は、Pythonで開発されており、顔認識には `dlib` ライブラ
                 - 15センチのフレックスケーブル x1 
 - **MAX7219 を使った LED マトリックス:** 
     - 8x8ドットマトリクスLED（MAX7219駆動） x 8
-    - 接続方法については、[https://store.shopping.yahoo.co.jp/solinnovay/rpimat1664.html](https://store.shopping.yahoo.co.jp/solinnovay/rpimat1664.html) を参考にして、購入してください。
+    - 接続方法については、[https://store.shopping.yahoo.co.jp/solinnovay/rpimat1664.html](https://store.shopping.yahoo.co.jp/solinnovay/rpimat1664.html) を購入し、参考にしてください。
 
 ### ソフトウェア
 
@@ -61,7 +68,7 @@ Pi-Bo は、Pythonで開発されており、顔認識には `dlib` ライブラ
    ```
 2. `git clone` でこのリポジトリをクローンします。
     ```bash
-    git clone https://github.com/TomoakiTANAKA/awesome-tool  ※適切なgitリポジトリURLに置き換えてください
+    git clone https://github.com/hogehoge/hogehoge  ※適切なgitリポジトリURLに置き換えてください
     ```
 3. リポジトリのディレクトリに移動します。
    ```bash
