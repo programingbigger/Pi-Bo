@@ -28,7 +28,6 @@ https://github.com/programingbigger/Pi-Bo/assets/125252034/90f5909e-fb79-4857-8b
 
 - 顔認識機能: あなたの顔を認識して、様々な表情を見せてくれます。
 - 複数の表情パターン: 笑顔や困った顔など、複数の表情パターンを搭載しています。
-- カスタマイズ可能な設定 (TODO: カスタマイズ可能な項目があれば追記): あなたの好みに合わせて、Pi-Bo の設定を変更できます。
 
 ## 必要環境
 
@@ -68,7 +67,7 @@ https://github.com/programingbigger/Pi-Bo/assets/125252034/90f5909e-fb79-4857-8b
    ```
 2. `git clone` でこのリポジトリをクローンします。
     ```bash
-    git clone https://github.com/hogehoge/hogehoge  ※適切なgitリポジトリURLに置き換えてください
+    git clone https://github.com/programingbigger/Pi-Bo.git
     ```
 3. リポジトリのディレクトリに移動します。
    ```bash
