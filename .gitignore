@@ -1,0 +1,6 @@
+# PiBoCore配下のファイルとフォルダ（そのフォルダの配下も）無視
+core
+*.log
+LOGGING/*.log
+save_caputure/*.png
+demo
