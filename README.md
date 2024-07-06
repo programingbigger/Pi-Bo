@@ -125,6 +125,9 @@ https://github.com/programingbigger/Pi-Bo/assets/125252034/90f5909e-fb79-4857-8b
 3. LED マトリックスに何か表示されれば、正常に動作しています。
 
 ## その他
+### Tagsの更新
+- Pi-Bo_ver0：Pi-Boのプロトタイプ
+
 
 ### 今後の展望
 
