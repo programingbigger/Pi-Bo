@@ -1,3 +1,7 @@
+
+
+https://github.com/programingbigger/Pi-Bo/assets/125252034/e4a19d96-11c3-4a14-9e92-3ecce3ffffef
+
 # Pi-Bo: 顔認識で表情が変わる！ Pi-Bo ver0
 
 ## 概要
