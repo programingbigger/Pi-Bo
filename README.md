@@ -53,7 +53,7 @@ https://github.com/programingbigger/Pi-Bo/assets/125252034/90f5909e-fb79-4857-8b
                 - 15センチのフレックスケーブル x1 
 - **MAX7219 を使った LED マトリックス:** 
     - 8x8ドットマトリクスLED（MAX7219駆動） x 8
-    - 接続方法については、[https://store.shopping.yahoo.co.jp/solinnovay/rpimat1664.html](https://store.shopping.yahoo.co.jp/solinnovay/rpimat1664.html) を参考にして、購入してください。
+    - 接続方法については、[https://store.shopping.yahoo.co.jp/solinnovay/rpimat1664.html](https://store.shopping.yahoo.co.jp/solinnovay/rpimat1664.html) を購入し、参考にしてください。
 
 ### ソフトウェア
 
