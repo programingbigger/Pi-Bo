@@ -95,3 +95,14 @@ class FACES:
     def random_face(self):
         functions = [self.magao, self.eyes_LR, self.trouble]
         random.choice(functions)()
+
+# test
+if __name__ == "__main__":
+    face = FACES()
+    face.magao()
+    face.eyes_LR()
+    face.trouble()
+    
+    # smile
+    # ~ face.smile()
+     
