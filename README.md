@@ -15,8 +15,10 @@ Pi-Bo は、Pythonで開発されており、顔認識には `dlib` ライブラ
 
 ***DEMO:***
 
-![笑顔 デモ動画](https://github.com/programingbigger/Pi-Bo/assets/125252034/e4a19d96-11c3-4a14-9e92-3ecce3ffffef)
+https://github.com/programingbigger/Pi-Bo/assets/125252034/b89f9d80-1ebd-4b82-908b-feb740e55ac2
 
+
+https://github.com/programingbigger/Pi-Bo/assets/125252034/90f5909e-fb79-4857-8b8a-e0f5dd32b790
 
 ## 特徴
 
