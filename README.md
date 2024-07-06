@@ -1,7 +1,3 @@
-
-
-https://github.com/programingbigger/Pi-Bo/assets/125252034/e4a19d96-11c3-4a14-9e92-3ecce3ffffef
-
 # Pi-Bo: 顔認識で表情が変わる！ Pi-Bo ver0
 
 ## 概要
@@ -19,7 +15,7 @@ Pi-Bo は、Pythonで開発されており、顔認識には `dlib` ライブラ
 
 ***DEMO:***
 
-![Demo](動画またはGIF画像のURL)  ※動画またはGIF画像があれば、ここにURLを貼り付けてください。
+![笑顔 デモ動画](https://github.com/programingbigger/Pi-Bo/assets/125252034/e4a19d96-11c3-4a14-9e92-3ecce3ffffef)
 
 
 ## 特徴
