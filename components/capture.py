@@ -84,8 +84,8 @@ def CaptureFace():
 	
 			# 矩形が描かれた情報を保存
 			pil_image.save(f"{cap_file_name}_with_boxes.png")
-			logger.info(f"Saved image with boxes: {cap_file_name}_with_boxes.png")
 			logger.info("collect capture")
+			logger.info(f"Saved image with boxes: {cap_file_name}_with_boxes.png")
 			
 			face_detected_flag = True
 	
@@ -93,8 +93,8 @@ def CaptureFace():
 			# 顔を検出できなかったときを検証したいため、そのときのの画像も残す
 			pil_image = Image.fromarray(image)
 			pil_image.save(f"{cap_file_name}.png")
-			logger.info(f"Saved image: {cap_file_name}.png")
 			logger.info("not capture")
+			logger.debug(f"Saved image: {cap_file_name}.png")
 			face_detected_flag = False
 	
 		time.sleep(0.1)
