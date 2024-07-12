@@ -34,13 +34,13 @@ logger = getLogger(__name__)
 # picamera2のインスタンス化と設定
 picam2 = Picamera2()
 preview = Preview.NULL # プレビューに映さない
-config = picam2.create_preview_configuration({"size": (400, 300), "format": "BGR888"}) # BGR:[R,G,B]
+config = picam2.create_preview_configuration(main = {"size": (400, 300), "format": "BGR888"}  , transform = Transform(hflip=1, vflip=1)) # BGR:[R,G,B]
 picam2.configure(config)
 
 # 顔検出のモデルを設定
 face_detector = dlib.get_frontal_face_detector()
 
-# 
+# 保存するファイル名
 cap_file_name = folder_and_file()
 
 def CaptureFace():
