@@ -15,12 +15,6 @@
  - display.py
 	- 顔のバリエーションを増やして、いろんな表情を見せるようにする
 	- 顔検出ができた用に、「こんにちは」⇨「笑顔」になるロジックを入れる ## 顔検出ロジック
- - Readme.md
-	- 生成AIに書かせる
- - requrements.txtの追加
-	- ライブラリの追加
-	- dev環境でライブラリをインポートしてちゃんと動く用に設定する
-
 """
 from components import clean
 from components.display import FACES
