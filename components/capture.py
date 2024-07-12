@@ -12,15 +12,13 @@ from picamera2 import Preview
 from libcamera import Transform
 import dlib
 import face_recognition
-import os
-from datetime import datetime
-import pytz
 import time
 from PIL import Image
 from PIL import ImageDraw
 #from PIL import ImageFont
 from logging import getLogger
 import sys
+from .mkdir import folder_and_file
 
 # logger
 logger = getLogger(__name__)
@@ -33,23 +31,6 @@ logger = getLogger(__name__)
 #fontFile = "Menlo-Regular.ttf"
 #font = ImageFont.truetype(fontFile, fontSize)
 
-# フォルダとファイル名
-target_dir = "save_caputure"
-jst = pytz.timezone("Asia/Tokyo")
-now = datetime.now().astimezone(jst) # 日本時間変換
-now = now.strftime("%Y-%m-%d_%H%M%S")
-cap_file_name = target_dir + "/" + f"{now}.png"
-
-# フォルダの作成
-if not os.path.exists(target_dir):
-  try:
-	  os.makedirs(target_dir)
-	  logger.info(f"{target_dir} saved")
-  except OSError as e:
-	  logger.error(f"do not make by error : {e}")
-else:
-  logger.info(f"{target_dir} already exists")
-
 # picamera2のインスタンス化と設定
 picam2 = Picamera2()
 preview = Preview.NULL # プレビューに映さない
@@ -58,6 +39,9 @@ picam2.configure(config)
 
 # 顔検出のモデルを設定
 face_detector = dlib.get_frontal_face_detector()
+
+# 
+cap_file_name = folder_and_file()
 
 def CaptureFace():
 	try:
