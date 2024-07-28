@@ -91,7 +91,7 @@ https://github.com/programingbigger/Pi-Bo/assets/125252034/90f5909e-fb79-4857-8b
         ```bash
         pip install -r requirements.txt
         ```
-    補足: インストール時にERROR: THESE PACKAGES DO NOT MATCH THE HASHES FROM THE REQUIREMENTS FILE.というエラーが発生する場合があります。その際は、こちらを参考にしてください。（https://qiita.com/nami_fumi/items/9e59451467c9a99a228e）
+    補足1: インストール時にERROR: THESE PACKAGES DO NOT MATCH THE HASHES FROM THE REQUIREMENTS FILE.というエラーが発生する場合があります。その際は、こちらを参考にしてください。（https://qiita.com/nami_fumi/items/9e59451467c9a99a228e）
 
 ## 使用方法
 
@@ -99,6 +99,10 @@ https://github.com/programingbigger/Pi-Bo/assets/125252034/90f5909e-fb79-4857-8b
     ```bash
     python3 clean.py 
     ```
+    補足2: 実行時に「ModuleNotFoundError: No module named 'luma'」と表示されたら、以下のコマンドを実行して、lumaライブラリをインポートしてください。
+   ```bash
+   pip3 install --upgrade luma.led_matrix
+   ```
 2. 以下のコマンドを実行し、Pi-Bo を起動します。
     ```bash
     python3 main.py
