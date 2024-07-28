@@ -91,6 +91,7 @@ https://github.com/programingbigger/Pi-Bo/assets/125252034/90f5909e-fb79-4857-8b
         ```bash
         pip install -r requirements.txt
         ```
+    補足: インストール時にERROR: THESE PACKAGES DO NOT MATCH THE HASHES FROM THE REQUIREMENTS FILE.というエラーが発生する場合があります。その際は、こちらを参考にしてください。（https://qiita.com/nami_fumi/items/9e59451467c9a99a228e）
 
 ## 使用方法
 
