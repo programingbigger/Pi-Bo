@@ -2,6 +2,7 @@ from logging import getLogger
 from logging import Formatter
 from logging import FileHandler
 from logging import DEBUG
+from logging import INFO
 from logging import StreamHandler
 
 '''
@@ -31,7 +32,7 @@ def setup_log(name):
 	# create console handler 
 	stream_handler = StreamHandler()
 	stream_handler.setFormatter(formatter)
-	stream_handler.setLevel(DEBUG)
+	stream_handler.setLevel(INFO)
 
 	# add handlers to the logger
 	logger.addHandler(file_handler)

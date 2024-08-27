@@ -28,6 +28,7 @@ https://github.com/programingbigger/Pi-Bo/assets/125252034/90f5909e-fb79-4857-8b
 
 - 顔認識機能: あなたの顔を認識して、様々な表情を見せてくれます。
 - 複数の表情パターン: 笑顔や困った顔など、複数の表情パターンを搭載しています。
+- 顔検出保存機能: カメラで撮影された画像を確認することができます。
 
 ## 必要環境
 
@@ -90,6 +91,7 @@ https://github.com/programingbigger/Pi-Bo/assets/125252034/90f5909e-fb79-4857-8b
         ```bash
         pip install -r requirements.txt
         ```
+    補足1: インストール時にERROR: THESE PACKAGES DO NOT MATCH THE HASHES FROM THE REQUIREMENTS FILE.というエラーが発生する場合があります。その際は、こちらを参考にしてください。（https://qiita.com/nami_fumi/items/9e59451467c9a99a228e）
 
 ## 使用方法
 
@@ -97,6 +99,10 @@ https://github.com/programingbigger/Pi-Bo/assets/125252034/90f5909e-fb79-4857-8b
     ```bash
     python3 clean.py 
     ```
+    補足2: 実行時に「ModuleNotFoundError: No module named 'luma'」と表示されたら、以下のコマンドを実行して、lumaライブラリをインポートしてください。
+   ```bash
+   pip3 install --upgrade luma.led_matrix
+   ```
 2. 以下のコマンドを実行し、Pi-Bo を起動します。
     ```bash
     python3 main.py
@@ -122,7 +128,7 @@ https://github.com/programingbigger/Pi-Bo/assets/125252034/90f5909e-fb79-4857-8b
    ```bash
    python3 demo.py
    ```
-3. LED マトリックスに何か表示されれば、正常に動作しています。
+3. LED マトリックスに何か表示されれば、正常に動作しています。また、カメラで撮影された画像は、「save_capture」というフォルダ名に格納されます。そこには、カメラで撮影した画像と、顔を検出した際にはその画像も別途保存されます。
 
 ## その他
 ### Tagsの更新

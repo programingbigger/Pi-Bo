@@ -12,15 +12,13 @@ from picamera2 import Preview
 from libcamera import Transform
 import dlib
 import face_recognition
-import os
-from datetime import datetime
-import pytz
 import time
 from PIL import Image
 from PIL import ImageDraw
 #from PIL import ImageFont
 from logging import getLogger
 import sys
+from .mkdir import folder_and_file
 
 # logger
 logger = getLogger(__name__)
@@ -33,31 +31,20 @@ logger = getLogger(__name__)
 #fontFile = "Menlo-Regular.ttf"
 #font = ImageFont.truetype(fontFile, fontSize)
 
-# フォルダとファイル名
-target_dir = "save_caputure"
-jst = pytz.timezone("Asia/Tokyo")
-now = datetime.now().astimezone(jst) # 日本時間変換
-now = now.strftime("%Y-%m-%d_%H%M%S")
-cap_file_name = target_dir + "/" + f"{now}.png"
-
-# フォルダの作成
-if not os.path.exists(target_dir):
-  try:
-	  os.makedirs(target_dir)
-	  logger.info(f"{target_dir} saved")
-  except OSError as e:
-	  logger.error(f"do not make by error : {e}")
-else:
-  logger.info(f"{target_dir} already exists")
-
 # picamera2のインスタンス化と設定
 picam2 = Picamera2()
 preview = Preview.NULL # プレビューに映さない
-config = picam2.create_preview_configuration({"size": (400, 300), "format": "BGR888"}) # BGR:[R,G,B]
+config = picam2.create_preview_configuration(
+		main = {"size": (400, 300), "format": "BGR888"} # BGR:[R,G,B]
+		, transform = Transform(hflip=1, vflip=1) # 180 dgree
+		)
 picam2.configure(config)
 
 # 顔検出のモデルを設定
 face_detector = dlib.get_frontal_face_detector()
+
+# 保存するファイル名
+cap_file_name = folder_and_file()
 
 def CaptureFace():
 	try:
@@ -97,8 +84,8 @@ def CaptureFace():
 	
 			# 矩形が描かれた情報を保存
 			pil_image.save(f"{cap_file_name}_with_boxes.png")
-			logger.info(f"Saved image with boxes: {cap_file_name}_with_boxes.png")
 			logger.info("collect capture")
+			logger.info(f"Saved image with boxes: {cap_file_name}_with_boxes.png")
 			
 			face_detected_flag = True
 	
@@ -106,8 +93,8 @@ def CaptureFace():
 			# 顔を検出できなかったときを検証したいため、そのときのの画像も残す
 			pil_image = Image.fromarray(image)
 			pil_image.save(f"{cap_file_name}.png")
-			logger.info(f"Saved image: {cap_file_name}.png")
 			logger.info("not capture")
+			logger.debug(f"Saved image: {cap_file_name}.png")
 			face_detected_flag = False
 	
 		time.sleep(0.1)
